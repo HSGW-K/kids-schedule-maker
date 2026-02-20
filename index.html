@@ -1314,10 +1314,12 @@
                 var titleY = padY + boxH / 2;
                 var startX = (pxW - totalW) / 2;
 
-                ctx.fillStyle = C.nameBox;
+                // 名前ボックス：塗りなし・黒枠・黒文字（ブラウザプレビューのCSS: background:transparent; border:4px solid #222 に合わせる）
+                ctx.strokeStyle = '#222222';
+                ctx.lineWidth = 4;
                 rrect(ctx, startX, titleY - boxH / 2, boxW, boxH, 12);
-                ctx.fill();
-                ctx.fillStyle = '#FFFFFF';
+                ctx.stroke();
+                ctx.fillStyle = '#222222';
                 ctx.textAlign = 'center';
                 ctx.fillText(nameVal, startX + boxW / 2, titleY);
 
@@ -1345,7 +1347,7 @@
 
                         var lx = padX + clockD + 18;
                         var lw = availW - clockD - 18 - 70;
-                        var lh = Math.min(entryH - 14, clockD * 0.70);
+                        var lh = Math.min(entryH - 14, clockD * 0.50);
                         var ly = ecy - lh / 2;
                         var bgColor = LABEL_COLORS[i % LABEL_COLORS.length];
                         // ビビット時は白文字、他は黒文字
@@ -1382,13 +1384,7 @@
                     var pdfNumBg = NUM_BADGE_COLORS[currentPattern];
                     var pdfNumFg = NUM_BADGE_TEXT_COLORS[currentPattern];
 
-                    ctx.strokeStyle = '#E0E0E0';
-                    ctx.lineWidth = 1;
-                    ctx.setLineDash([]);
-                    ctx.beginPath();
-                    ctx.moveTo(pxW / 2, entryStartY - 10);
-                    ctx.lineTo(pxW / 2, pxH - padY);
-                    ctx.stroke();
+                    // 2カラム区切り線なし（ブラウザプレビューに合わせる）
 
                     // 左列: items[0]〜items[rowCount-1]、右列: items[rowCount]〜items[count-1]
                     for (var pdfRow = 0; pdfRow < rowCount; pdfRow++) {
@@ -1419,7 +1415,7 @@
 
                             var lx2 = colStartX + clockD2 + 14;
                             var lw2 = colW - clockD2 - 14 - 52;
-                            var lh2 = Math.min(entryH2 - 12, clockD2 * 0.70);
+                            var lh2 = Math.min(entryH2 - 12, clockD2 * 0.45);
                             var ly2 = ecy - lh2 / 2;
                             var bgColor2 = LABEL_COLORS[i % LABEL_COLORS.length];
 
